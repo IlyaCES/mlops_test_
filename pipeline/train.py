@@ -1,4 +1,4 @@
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier
 import pandas as pd
 import joblib
 
@@ -8,5 +8,5 @@ X = df.drop('y', axis=1)
 y = df['y']
 
 
-model = DecisionTreeClassifier(max_depth=3).fit(X, y)
+model = RandomForestClassifier(max_depth=3).fit(X, y)
 joblib.dump(model, 'model/m.model')
