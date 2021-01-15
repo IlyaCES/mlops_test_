@@ -1,0 +1,41 @@
+preprocess:
+  cmd: python pipeline/preprocess.py
+  deps:
+  - path: dataset/data.csv
+    md5: 8010ce58a6c2bd6e97f8b8b20831f9c8
+    size: 19757046
+  - path: pipeline/preprocess.py
+    md5: dcc8c7bd0321cac7b69be62002d3fa10
+    size: 459
+  outs:
+  - path: dataset/data_test.csv
+    md5: 124ab7cb5efbc11b664a1116546e3951
+    size: 4932565
+  - path: dataset/data_train.csv
+    md5: 0d4504e43bd438f10a2b527cd70e47b6
+    size: 14800453
+train:
+  cmd: python pipeline/train.py
+  deps:
+  - path: dataset/data_train.csv
+    md5: 0d4504e43bd438f10a2b527cd70e47b6
+    size: 14800453
+  - path: pipeline/train.py
+    md5: 3f3ebab2d12ce77af037263a542ac6ca
+    size: 266
+val:
+  cmd: python pipeline/val.py
+  deps:
+  - path: dataset/data_test.csv
+    md5: 124ab7cb5efbc11b664a1116546e3951
+    size: 4932565
+  - path: pipeline/val.py
+    md5: fbab6474bfe8c87f4ffced8f07e966c3
+    size: 726
+  outs:
+  - path: model/confusion_matrix.png
+    md5: baa4dbd45db2434d9a4c6486a493b8d6
+    size: 33709
+  - path: model/metrics.json
+    md5: 5d469db5ce9a80d6efca80ca29e5bfe4
+    size: 53
